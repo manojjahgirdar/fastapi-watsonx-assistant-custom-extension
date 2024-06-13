@@ -23,12 +23,10 @@ Reference link: [Django, Flask, FastAPI: A Comparative Analysis of Python Web Fr
 
 ## 1. Run the FastAPIs locally
 
-Create a repo of you own using this starter kit: [Use this template](https://github.ibm.com/ecosystem-engineering-si-lab/fast-apis-starter-kit/generate)
-
-1. Clone your repo. In terminal run,
+1. Clone the repo. In terminal run,
 
     ```bash
-    git clone your-repo.git
+    git clone https://github.com/manojjahgirdar/fastapi-watsonx-assistant-custom-extension.git
     ```
 
 2. Goto the root of the cloned repo and install the python dependencies.
