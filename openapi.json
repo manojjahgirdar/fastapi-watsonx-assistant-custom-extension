@@ -1,0 +1,151 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "[Title of your project]",
+        "description": "[A brief description of your project]",
+        "license": {
+            "name": "MIT License",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "https://fastapi-demo-route.1i1x78nlngfw.us-east.codeengine.appdomain.cloud"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Others"
+                ],
+                "summary": "Home Route",
+                "operationId": "home__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/generate": {
+            "get": {
+                "tags": [
+                    "Watsonx.ai"
+                ],
+                "summary": "This is an API to generate text from Watsonx.ai",
+                "operationId": "watsonxGenerate_api_generate_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "question",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "description": "Question",
+                            "title": "Question"
+                        },
+                        "description": "Question"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A successful response will look something like this",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostValidatorSuccess"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "A response with invalid username/password will look something like this",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostValidatorError2"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "A failed response will look something like this",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PostValidatorError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PostValidatorError": {
+                "properties": {
+                    "detail": {
+                        "type": "string",
+                        "title": "Detail",
+                        "default": "Validation Error Occurred"
+                    }
+                },
+                "type": "object",
+                "title": "PostValidatorError"
+            },
+            "PostValidatorError2": {
+                "properties": {
+                    "detail": {
+                        "type": "string",
+                        "title": "Detail",
+                        "default": "Invalid credentials"
+                    }
+                },
+                "type": "object",
+                "title": "PostValidatorError2"
+            },
+            "PostValidatorSuccess": {
+                "properties": {
+                    "output": {
+                        "type": "string",
+                        "title": "Output",
+                        "default": "Your output will be a json object with a key named `output`."
+                    }
+                },
+                "type": "object",
+                "title": "PostValidatorSuccess"
+            }
+        },
+        "securitySchemes": {
+            "APIKeyHeader": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "X-API-Key"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Watsonx.ai",
+            "description": "Invoke Watsonx.ai APIs to generate text using LLMs."
+        },
+        {
+            "name": "Others",
+            "description": "Miscellaneous APIs"
+        }
+    ]
+}
